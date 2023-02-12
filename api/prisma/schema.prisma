@@ -11,17 +11,24 @@ datasource db {
 }
 
 model Weather {
-  id        Int       @default(autoincrement()) @id
-  queriedAt DateTime  @default(now())
-  city      String
-  lat       Float
-  lon       Float
-  temp      Float
-  pressure  Float
-  humidity  Float 
-  windDeg   Float 
-  windSpeed Float
-  windGust  Float
-  cloud     Float 
-  rain      Float
+  id          Int       @default(autoincrement()) @id
+  queriedAt   DateTime  @default(now())
+  city        String
+  temp        Float
+  description String
+  pressure    Float
+  humidity    Float 
+  windDeg     Float 
+  windSpeed   Float
+  windGust    Float
+  cloud       Float 
+  rain        Float
+  icon        String
+}
+
+model Coordinate {
+  id    Int     @default(autoincrement()) @id 
+  name  String
+  lat   Float 
+  lon   Float
 }

@@ -3,10 +3,14 @@ import { createExpressMiddleware } from '@trpc/server/adapters/express'
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import fs from 'fs';
 import cors from 'cors';
 import { weatherRouter } from './routes/weather';
 
 const app = express();
+
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+app.use(logger('combined', { stream: accessLogStream }))
 
 app.use((_, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
